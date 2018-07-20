@@ -45,6 +45,7 @@ const moves = document.querySelector(".moves");
 let shownCards = [];
 let scoreCount = 0;
 let numMoves = 0;
+let totalCards = 0;
 
 
 //shuffle function
@@ -67,13 +68,20 @@ function shuffle(array) {
 //shuffling deck lol
 shuffle(cards);
 
-for (let i = 0; i < cards.length; i++) {
-  const card = document.createElement("li");
-  card.classList.add("card");
-  card.innerHTML = "<i class='" + cards[i] + "'></i>";
-  deck.appendChild(card);
+//appending cards in deck
+window.onload = function addCards(){
+  for (let i = 0; i < cards.length; i++) {
+    let card = document.createElement("li");
+    card.classList.add("card");
+    card.innerHTML = "<i class='" + cards[i] + "'></i>";
+    deck.appendChild(card);
+    clicked(card);
+  }
+};
+
 
   //Matching card logic and score system
+function clicked(card){
   card.addEventListener("click", function() {
     if (shownCards.length === 1) {
       const firstCard = shownCards[0];
@@ -81,10 +89,13 @@ for (let i = 0; i < cards.length; i++) {
       card.classList.add("open", "show");
       shownCards.push(this);
       if (firstCard.innerHTML === secondCard.innerHTML) {
-        firstCard.classList.add("match");
-        secondCard.classList.add("match");
+        firstCard.classList.add("match", "disable");
+        secondCard.classList.add("match", "disable");
         shownCards = [];
         scoreCount += 5;
+        totalCards += 2;
+
+        setTimeout(function(){gameOver();}, 500);
       } else {
         firstCard.classList.add("noMatch");
         secondCard.classList.add("noMatch");
@@ -99,6 +110,15 @@ for (let i = 0; i < cards.length; i++) {
       shownCards.push(this);
       numMoves += 1;
     }
-    moves.appendChild("");
   });
+}
+
+
+
+//Game over function goes here
+
+function gameOver() {
+  if(totalCards === 16){
+    alert("lol")
+  }
 }

@@ -87,6 +87,10 @@ h1 {
   font-size: 33px;
 }
 
+.disable{
+  pointer-events: none;
+}
+
 /*
  * Styles for the Score Panel
  */
