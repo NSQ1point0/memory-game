@@ -42,6 +42,7 @@ const cards = [
 const deck = document.querySelector(".deck");
 const startBtn = document.getElementById("btn-start");
 const moves = document.querySelector(".moves");
+const stars = document.querySelector(".stars");
 let shownCards = [];
 let scoreCount = 0;
 let numMoves = 0;
@@ -65,20 +66,22 @@ function shuffle(array) {
   return array;
 }
 
-//shuffling deck lol
-shuffle(cards);
 
 //appending cards in deck
-window.onload = function addCards(){
+window.onload = addCards();
+
+function addCards(){
+  //shuffling deck lol
+  shuffle(cards);
+  deck.innerHTML = "";
   for (let i = 0; i < cards.length; i++) {
     let card = document.createElement("li");
-    card.classList.add("card");
+    card.classList.add("card", "show");
     card.innerHTML = "<i class='" + cards[i] + "'></i>";
     deck.appendChild(card);
     clicked(card);
   }
-};
-
+}
 
   //Matching card logic and score system
 function clicked(card){
@@ -86,7 +89,7 @@ function clicked(card){
     if (shownCards.length === 1) {
       const firstCard = shownCards[0];
       const secondCard = this;
-      card.classList.add("open", "show");
+      card.classList.add("open", "show", "disable");
       shownCards.push(this);
       if (firstCard.innerHTML === secondCard.innerHTML) {
         firstCard.classList.add("match", "disable");
@@ -99,16 +102,16 @@ function clicked(card){
       } else {
         firstCard.classList.add("noMatch");
         secondCard.classList.add("noMatch");
-        setTimeout(function(){firstCard.classList.remove("open", "show","noMatch");
-        secondCard.classList.remove("open", "show", "noMatch");}, 500);
+        setTimeout(function(){firstCard.classList.remove("open", "show","noMatch", "disable");
+        secondCard.classList.remove("open", "show", "noMatch", "disable");}, 500);
         shownCards = [];
         scoreCount -= 2;
       }
-      numMoves += 1;
+      move();
     } else {
-      card.classList.add("open", "show");
+      card.classList.add("open", "show", "disable");
       shownCards.push(this);
-      numMoves += 1;
+      move();
     }
   });
 }
@@ -120,5 +123,41 @@ function clicked(card){
 function gameOver() {
   if(totalCards === 16){
     alert("lol")
+  }
+}
+
+
+//reset button
+const reset = document.querySelector(".restart");
+
+reset.addEventListener("click", function() {
+  addCards();
+  shownCards = [];
+  scoreCount = 0;
+  numMoves = 0;
+  totalCards = 0;
+  moves.innerHTML = 0;
+});
+
+
+//incrementing Moves
+function move(){
+  numMoves++;
+  moves.innerHTML = numMoves;
+  star();
+}
+
+
+//star rating function
+
+function star(){
+  if (numMoves > 1 && numMoves < 5  && totalCards >= 2) {
+    stars.innerHTML = '<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>';
+  }
+  else if (numMoves > 6 && numMoves < 10 && totalCards <= 4) {
+    stars.innerHTML = '<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>';
+  }
+  else if (numMoves > 10 && numMoves < 18 && totalCards <= 8) {
+    stars.innerHTML = '<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li></li><li><i class="fa fa-star"></i></li>';
   }
 }

@@ -59,3 +59,9 @@ function createCards(){
 }
 
 startBtn.addEventListener("click", createCards());
+
+
+
+<li><i class="fa fa-star"></i></li>
+<li><i class="fa fa-star"></i></li>
+<li><i class="fa fa-star"></i></li>
