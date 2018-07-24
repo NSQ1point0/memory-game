@@ -91,22 +91,22 @@ function clicked(card){
       const secondCard = this;
       card.classList.add("open", "show", "disable");
       shownCards.push(this);
-      if (firstCard.innerHTML === secondCard.innerHTML) {
-        firstCard.classList.add("match", "disable");
-        secondCard.classList.add("match", "disable");
-        shownCards = [];
-        scoreCount += 5;
-        totalCards += 2;
+        if (firstCard.innerHTML === secondCard.innerHTML) {
+          firstCard.classList.add("match", "disable");
+          secondCard.classList.add("match", "disable");
+          shownCards = [];
+          scoreCount += 5;
+          totalCards += 2;
 
-        setTimeout(function(){gameOver();}, 500);
-      } else {
-        firstCard.classList.add("noMatch");
-        secondCard.classList.add("noMatch");
-        setTimeout(function(){firstCard.classList.remove("open", "show","noMatch", "disable");
-        secondCard.classList.remove("open", "show", "noMatch", "disable");}, 500);
-        shownCards = [];
-        scoreCount -= 2;
-      }
+          setTimeout(function(){gameOver();}, 500);
+        } else {
+          firstCard.classList.add("noMatch");
+          secondCard.classList.add("noMatch");
+          setTimeout(function(){firstCard.classList.remove("open", "show","noMatch", "disable");
+          secondCard.classList.remove("open", "show", "noMatch", "disable");}, 500);
+          shownCards = [];
+          scoreCount -= 2;
+        }
       move();
     } else {
       card.classList.add("open", "show", "disable");
@@ -123,6 +123,7 @@ function clicked(card){
 function gameOver() {
   if(totalCards === 16){
     alert("lol")
+    stop += 1;
   }
 }
 
@@ -151,13 +152,43 @@ function move(){
 //star rating function
 
 function star(){
-  if (numMoves > 1 && numMoves < 5  && totalCards >= 2) {
+  if (numMoves < 5  && totalCards >= 2) {
     stars.innerHTML = '<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>';
   }
   else if (numMoves > 6 && numMoves < 10 && totalCards <= 4) {
-    stars.innerHTML = '<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>';
+    stars.innerHTML = '<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star-o"></i></li>';
   }
   else if (numMoves > 10 && numMoves < 18 && totalCards <= 8) {
-    stars.innerHTML = '<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li></li><li><i class="fa fa-star"></i></li>';
+    stars.innerHTML = '<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li>';
+  }
+  else if (numMoves > 20 && totalCards <= 8) {
+    stars.innerHTML = '<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li>';
   }
 }
+
+
+//countdown timer
+
+let min = 0;
+let sec = 0;
+let stop = 0;
+const timer = document.querySelector(".timer")
+
+window.onload = function () {
+    setInterval(function() {
+        if (stop !== 1) {
+            sec++;
+            if (sec === 60) {
+                min++;
+                sec = 0;
+            }
+            if (min === 60) {
+                min = 0;
+                sec = 0;
+                stop += 1;
+            }
+            timer.innerHTML = min +" min "+ sec + " sec";
+        }
+
+    }, 1000);
+};
