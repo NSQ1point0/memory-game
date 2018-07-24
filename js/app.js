@@ -122,8 +122,8 @@ function clicked(card){
 
 function gameOver() {
   if(totalCards === 16){
-    alert("lol")
     stop += 1;
+    popUpFunction();
   }
 }
 
@@ -137,7 +137,11 @@ reset.addEventListener("click", function() {
   scoreCount = 0;
   numMoves = 0;
   totalCards = 0;
+  min = 0;
+  sec = 0;
+  stop = 0;
   moves.innerHTML = 0;
+  timer.innerHTML = "";
 });
 
 
@@ -192,3 +196,33 @@ window.onload = function () {
 
     }, 1000);
 };
+
+
+//popUp function
+const popUp = document.querySelector(".popUp");
+const closeBtn = document.querySelector(".closeBtn");
+
+function popUpFunction() {
+  popUp.style.display = "block"
+  closeBtn.addEventListener("click", function() {popUp.style.display = "none"});
+  playAgain();
+}
+
+
+//playAgain button function
+const playAgainBtn = document.querySelector(".playAgain");
+
+function playAgain(){
+  playAgainBtn.addEventListener("click", function(){
+  popUp.style.display = "none"
+  addCards();
+  shownCards = [];
+  scoreCount = 0;
+  numMoves = 0;
+  totalCards = 0;
+  min = 0;
+  sec = 0;
+  stop = 0;
+  moves.innerHTML = 0;
+  timer.innerHTML = "";});
+}
