@@ -74,7 +74,7 @@ function addCards() {
   deck.innerHTML = "";
   for (let i = 0; i < cards.length; i++) {
     let card = document.createElement("li");
-    card.classList.add("card", "show");
+    card.classList.add("card");
     card.innerHTML = "<i class='" + cards[i] + "'></i>";
     deck.appendChild(card);
     clicked(card);
