@@ -48,12 +48,11 @@ let scoreCount = 0;
 let numMoves = 0;
 let totalCards = 0;
 
-
 //shuffle function
 function shuffle(array) {
-  var currentIndex = array.length,
-  temporaryValue,
-  randomIndex;
+  let currentIndex = array.length,
+    temporaryValue,
+    randomIndex;
 
   while (currentIndex !== 0) {
     randomIndex = Math.floor(Math.random() * currentIndex);
@@ -66,11 +65,10 @@ function shuffle(array) {
   return array;
 }
 
-
 //appending cards in deck
 window.onload = addCards();
 
-function addCards(){
+function addCards() {
   //shuffling deck lol
   shuffle(cards);
   deck.innerHTML = "";
@@ -83,30 +81,34 @@ function addCards(){
   }
 }
 
-  //Matching card logic and score system
-function clicked(card){
+//Matching card logic and score system
+function clicked(card) {
   card.addEventListener("click", function() {
     if (shownCards.length === 1) {
       const firstCard = shownCards[0];
       const secondCard = this;
       card.classList.add("open", "show", "disable");
       shownCards.push(this);
-        if (firstCard.innerHTML === secondCard.innerHTML) {
-          firstCard.classList.add("match", "disable");
-          secondCard.classList.add("match", "disable");
-          shownCards = [];
-          scoreCount += 5;
-          totalCards += 2;
+      if (firstCard.innerHTML === secondCard.innerHTML) {
+        firstCard.classList.add("match", "disable");
+        secondCard.classList.add("match", "disable");
+        shownCards = [];
+        scoreCount += 5;
+        totalCards += 2;
 
-          setTimeout(function(){gameOver();}, 500);
-        } else {
-          firstCard.classList.add("noMatch");
-          secondCard.classList.add("noMatch");
-          setTimeout(function(){firstCard.classList.remove("open", "show","noMatch", "disable");
-          secondCard.classList.remove("open", "show", "noMatch", "disable");}, 500);
-          shownCards = [];
-          scoreCount -= 2;
-        }
+        setTimeout(function() {
+          gameOver();
+        }, 500);
+      } else {
+        firstCard.classList.add("noMatch");
+        secondCard.classList.add("noMatch");
+        setTimeout(function() {
+          firstCard.classList.remove("open", "show", "noMatch", "disable");
+          secondCard.classList.remove("open", "show", "noMatch", "disable");
+        }, 500);
+        shownCards = [];
+        scoreCount -= 2;
+      }
       move();
     } else {
       card.classList.add("open", "show", "disable");
@@ -116,17 +118,14 @@ function clicked(card){
   });
 }
 
-
-
 //Game over function goes here
 
 function gameOver() {
-  if(totalCards === 16){
+  if (totalCards === 16) {
     stop += 1;
     popUpFunction();
   }
 }
-
 
 //reset button
 const reset = document.querySelector(".restart");
@@ -144,85 +143,91 @@ reset.addEventListener("click", function() {
   timer.innerHTML = "";
 });
 
-
 //incrementing Moves
-function move(){
+function move() {
   numMoves++;
   moves.innerHTML = numMoves;
   star();
 }
 
-
 //star rating function
+let starCount = 0;
 
-function star(){
-  if (numMoves < 5  && totalCards >= 2) {
-    stars.innerHTML = '<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>';
-  }
-  else if (numMoves > 6 && numMoves < 10 && totalCards <= 4) {
-    stars.innerHTML = '<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star-o"></i></li>';
-  }
-  else if (numMoves > 10 && numMoves < 18 && totalCards <= 8) {
-    stars.innerHTML = '<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li>';
-  }
-  else if (numMoves > 20 && totalCards <= 8) {
-    stars.innerHTML = '<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li>';
+function star() {
+  if (numMoves < 5 && totalCards >= 2) {
+    stars.innerHTML =
+      '<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>';
+  } else if (numMoves > 6 && numMoves < 10 && totalCards <= 4) {
+    stars.innerHTML =
+      '<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star-o"></i></li>';
+  } else if (numMoves > 10 && numMoves < 18 && totalCards <= 8) {
+    stars.innerHTML =
+      '<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li>';
+  } else if (numMoves > 20 && totalCards <= 8) {
+    stars.innerHTML =
+      '<li><i class="fa fa-star"></i></li><li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li>';
   }
 }
-
 
 //countdown timer
 
 let min = 0;
 let sec = 0;
 let stop = 0;
-const timer = document.querySelector(".timer")
+const timer = document.querySelector(".timer");
 
-window.onload = function () {
-    setInterval(function() {
-        if (stop !== 1) {
-            sec++;
-            if (sec === 60) {
-                min++;
-                sec = 0;
-            }
-            if (min === 60) {
-                min = 0;
-                sec = 0;
-                stop += 1;
-            }
-            timer.innerHTML = min +" min "+ sec + " sec";
-        }
-
-    }, 1000);
+window.onload = function() {
+  setInterval(function() {
+    if (stop !== 1) {
+      sec++;
+      if (sec === 60) {
+        min++;
+        sec = 0;
+      }
+      if (min === 60) {
+        min = 0;
+        sec = 0;
+        stop += 1;
+      }
+      timer.innerHTML = min + " min " + sec + " sec";
+    }
+  }, 1000);
 };
-
 
 //popUp function
 const popUp = document.querySelector(".popUp");
 const closeBtn = document.querySelector(".closeBtn");
-
+const resultMoves = document.querySelector(".resultMoves");
+const resultStars = document.querySelector(".resultStars");
+const resultScore = document.querySelector(".resultScore");
+const timetaken = document.querySelector(".resultTime");
 function popUpFunction() {
-  popUp.style.display = "block"
-  closeBtn.addEventListener("click", function() {popUp.style.display = "none"});
+  popUp.style.display = "block";
+  closeBtn.addEventListener("click", function() {
+    popUp.style.display = "none";
+  });
+  resultMoves.innerHTML = numMoves + " moves made";
+  resultScore.innerHTML = "Score " + scoreCount;
+  timetaken.innerHTML = "Time Taken " + timer.innerHTML;
+  resultStars.innerHTML = stars.innerHTML;
   playAgain();
 }
-
 
 //playAgain button function
 const playAgainBtn = document.querySelector(".playAgain");
 
-function playAgain(){
-  playAgainBtn.addEventListener("click", function(){
-  popUp.style.display = "none"
-  addCards();
-  shownCards = [];
-  scoreCount = 0;
-  numMoves = 0;
-  totalCards = 0;
-  min = 0;
-  sec = 0;
-  stop = 0;
-  moves.innerHTML = 0;
-  timer.innerHTML = "";});
+function playAgain() {
+  playAgainBtn.addEventListener("click", function() {
+    popUp.style.display = "none";
+    addCards();
+    shownCards = [];
+    scoreCount = 0;
+    numMoves = 0;
+    totalCards = 0;
+    min = 0;
+    sec = 0;
+    stop = 0;
+    moves.innerHTML = 0;
+    timer.innerHTML = "";
+  });
 }
