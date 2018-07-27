@@ -3,15 +3,26 @@
 ## Table of Contents
 
 * [Instructions](#instructions)
+
 * [Contributing](#contributing)
+
+* [Dependencies](#dependencies)
+
+* [Links](#link)
 
 ## Instructions
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+How to start the game:
+by going on page [link](https://numbskullq1.github.io/memory-game/) game starts as the page loads. click on card to reveal and try to match the cards. if cards are matched then both turn green if both does not match then both turns red and hide again.
 
-To get started, open `js/app.js` and start building out the app's functionality
+###Rules
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+1) If Both cards have same image you get +5 points
+
+2) If both cards a different then you get -2 points
+
+3) star rating is based of number of moves made and
+   number of cards matched.(so try to match more cards with less moves)
 
 ## Contributing
 
@@ -19,6 +30,10 @@ This repository is the starter code for _all_ Udacity students. Therefore, we mo
 
 For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
 
+##Dependencies
 
-link of page
-https://numbskullq1.github.io/memory-game/
+Bootstrap is used for page styling
+ https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css
+
+Google font is used for page styling
+https://fonts.googleapis.com/css?family=Coda
