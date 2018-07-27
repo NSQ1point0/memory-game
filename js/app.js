@@ -141,6 +141,8 @@ reset.addEventListener("click", function() {
   stop = 0;
   moves.innerHTML = 0;
   timer.innerHTML = "";
+  stars.innerHTML =
+    '<li><i class="fa fa-star"></i></li><li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li>';
 });
 
 //incrementing Moves

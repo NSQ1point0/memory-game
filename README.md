@@ -8,8 +8,6 @@
 
 * [Dependencies](#dependencies)
 
-* [Links](#link)
-
 ## Instructions
 
 How to start the game:
