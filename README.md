@@ -15,7 +15,7 @@
 How to start the game:
 by going on page [link](https://numbskullq1.github.io/memory-game/) game starts as the page loads. click on card to reveal and try to match the cards. if cards are matched then both turn green if both does not match then both turns red and hide again.
 
-###Rules
+### Rules
 
 1) If Both cards have same image you get +5 points
 
@@ -30,7 +30,7 @@ This repository is the starter code for _all_ Udacity students. Therefore, we mo
 
 For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
 
-##Dependencies
+## Dependencies
 
 Bootstrap is used for page styling
  https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css
