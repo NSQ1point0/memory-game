@@ -205,6 +205,12 @@ h1 {
   padding-top: 30px;
 }
 
+.stars{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 /*
 *Now time to be responsive
 */
