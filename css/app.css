@@ -205,7 +205,7 @@ h1 {
   padding-top: 30px;
 }
 
-.stars{
+.resultStars{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
